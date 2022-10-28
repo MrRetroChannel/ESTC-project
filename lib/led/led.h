@@ -6,4 +6,4 @@ int colorToLed(char color);
 
 void blink(char color, size_t delay);
 
-void blink_stay(char color, size_t delay);
+bool blink_stay(char color, size_t delay);

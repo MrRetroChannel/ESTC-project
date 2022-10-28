@@ -24,7 +24,7 @@ void blink(char color, size_t delay)
     nrf_delay_ms(delay);
 }
 
-void blink_stay(char color, size_t delay)
+bool blink_stay(char color, size_t delay)
 {
     static char c = 0;
     static bool sleep = false;
@@ -36,16 +36,23 @@ void blink_stay(char color, size_t delay)
     if (sleep)
         nrf_delay_ms(delay);
 
-    int prev = nrf_gpio_pin_read(BUTTON);
-    bsp_board_led_on(colorToLed(color));
-    nrf_delay_ms(delay);
-
-    if (nrf_gpio_pin_read(BUTTON) == prev)
+    if (button_pressed())
     {
-        bsp_board_led_off(colorToLed(color));
+        int prev = nrf_gpio_pin_read(BUTTON);
+        bsp_board_led_on(colorToLed(color));
         nrf_delay_ms(delay);
-        sleep = false;
+
+        if (nrf_gpio_pin_read(BUTTON) == prev)
+        {
+            bsp_board_led_off(colorToLed(color));
+            nrf_delay_ms(delay);
+            sleep = false;
+        }
+        else
+            sleep = true;
+            
+        return true;
     }
-    else
-        sleep = true;
+
+    return false;
 }
