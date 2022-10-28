@@ -11,6 +11,8 @@ PROJ_DIR := ../..
 $(OUTPUT_DIRECTORY)/nrf52840_xxaa.out: \
   LINKER_SCRIPT  := blinky_gcc_nrf52.ld
 
+SRC_FILES += $(wildcard ../../lib/*/*.c)
+
 # Source files common to all targets
 SRC_FILES += \
   $(SDK_ROOT)/modules/nrfx/mdk/gcc_startup_nrf52840.S \
@@ -32,6 +34,8 @@ SRC_FILES += \
   $(SDK_ROOT)/modules/nrfx/soc/nrfx_atomic.c \
   $(PROJ_DIR)/main.c \
   $(SDK_ROOT)/modules/nrfx/mdk/system_nrf52840.c \
+
+INC_FOLDERS += ../../lib
 
 # Include folders common to all targets
 INC_FOLDERS += \

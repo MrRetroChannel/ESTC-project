@@ -5,6 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${vcpkgRoot}/x64-windows/include",
+                "${workspaceFolder}/lib",
                 "C:/nordicSDK/components",
                 "C:/nordicSDK/modules/nrfx/mdk",
                 "C:/nordicSDK/components/libraries/sortlist",
