@@ -7,6 +7,7 @@
 int main(void)
 {
     bsp_board_init(BSP_INIT_LEDS);
+
     //int id[] = {6, 5, 9, 9};
 
     const char* led = "RRGGGB";
@@ -16,6 +17,9 @@ int main(void)
     nrf_gpio_cfg_input(BUTTON, NRF_GPIO_PIN_PULLUP);
     
     int i = 0;
+
+    int id[] = {6, 5, 9, 9};
+
     while (true)
     {
         while (button_pressed())
@@ -24,4 +28,6 @@ int main(void)
             i = i == strlen(led) ? 0 : i;
         }
     }
+
 }
+
